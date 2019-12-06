@@ -34,7 +34,7 @@ Estes são alguns exemplos de comandos do ansible. Estes comandos no caso vai fa
         ansible -vvvv task --extra-vars "ansible_user=user ansible_password=passaword" -i hosts -m shell -a "echo Hello, World"
 
 ### Configurando Ansible
-- Dentro do arquivo hosts_adm por exemplo tera a tag tb_adm que indica a configuração pre-estabelecida para aquele ambiente, deve ser parametrizado o servidor que vai ser configurado pelo ansible
+- Dentro do arquivo host_jboss_server por exemplo tera a tag jboss_server que indica a configuração pre-estabelecida para aquele ambiente, deve ser parametrizado o servidor que vai ser configurado pelo ansible
 
-        [tb_adm] 
+        [jboss_server] 
         172.17.0.3 ansible_user=user ansible_password=password
