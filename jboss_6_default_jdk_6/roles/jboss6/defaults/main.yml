@@ -1,0 +1,7 @@
+---
+jboss_dir: '/opt'
+jboss_java_home: '/usr/local/java/jdk1.6.0_45'
+jboos_Xms: '-Xms512m'
+jboss_Xmx: '-Xmx756G'
+jboos_MaxPermSize: '-XX:MaxPermSize=256m'
+jboos_timezone: '-Duser.timezone=GMT-3'

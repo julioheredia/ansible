@@ -1,0 +1,9 @@
+---
+- hosts: jboss_server
+  vars:
+    webstart_home: "{{ jboss_home }}/deploy/webstart.war"
+  roles: 
+    - jboss_instance
+    - jboss_service
+    - jboss_bind
+    - webstart

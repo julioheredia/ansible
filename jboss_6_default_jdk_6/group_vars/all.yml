@@ -1,0 +1,2 @@
+---
+jboss_home: "{{ jboss_dir }}/jboss/server/{{ instancia }}"

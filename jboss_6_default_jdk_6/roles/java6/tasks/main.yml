@@ -1,0 +1,19 @@
+---
+- name: 'cria dir do java'
+  file:
+    path: "{{ java_home }}"
+    state: directory
+  become: yes
+
+- name: 'baixa java6'
+  copy:
+    src: "jdk1.6.0_45.tar.gz"
+    dest: "/tmp/jdk1.6.0_45.tar.gz"
+  become: yes
+
+- name: 'descompacta o java6'
+  unarchive:
+    src: '/tmp/jdk1.6.0_45.tar.gz'
+    dest: "{{ java_home }}"
+    remote_src: yes
+  become: yes

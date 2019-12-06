@@ -1,0 +1,19 @@
+---
+- name: 'create a dir instancia do jboss'
+  file:
+    path: "{{ jboss_home }}"
+    state: directory
+    owner: 'jboss'
+    group: 'jboss'
+    mode: '0755'
+    recurse: yes
+
+- name: 'copia o dir default para instancia do jboss'
+  copy:
+    src: '/dados/jboss/server/default/'
+    dest: "{{ jboss_home }}/"
+    owner: 'jboss'
+    group: 'jboss'
+    mode: '0755'
+    remote_src: yes
+  become: yes

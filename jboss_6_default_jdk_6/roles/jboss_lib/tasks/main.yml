@@ -1,0 +1,6 @@
+---
+- name: 'copiar lib basicas do vta do jboss'
+  copy:
+    src: "lib/"
+    dest: "{{ jboss_home }}/lib"
+  become: yes

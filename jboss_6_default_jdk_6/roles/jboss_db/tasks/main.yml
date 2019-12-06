@@ -1,0 +1,17 @@
+---
+- name: 'copiar oracle-ds'
+  template:
+    src: 'oracle-ds.xml.j2'
+    dest: "{{ jboss_home }}/deploy/oracle-ds.xml"
+  become: yes
+
+- name: 'Configura o oracle-ds com as entradas do banco de dados'     
+  replace:
+    path: "{{ jboss_home }}/deploy/oracle-ds.xml"
+    regexp: "{{ item.regex }}"
+    replace: "{{ item.value }}"
+  with_items:
+    - { regex: 'param_conexao', value: "{{ db_url }}"}
+    - { regex: 'param_user', value: '"{{db_username }}"'}
+    - { regex: 'param_pass', value: "{{ db_password }}"}
+  become: yes

@@ -1,0 +1,15 @@
+---
+- name: 'copiar bindings-jboss-beans'
+  template:
+    src: 'bindings-jboss-beans.xml.j2'
+    dest: "{{ jboss_home }}/conf/bindingservice.beans/META-INF/bindings-jboss-beans.xml"
+  become: yes
+
+- name: 'Configura o jboss_port'     
+  replace:
+    path: "{{ jboss_home }}/conf/bindingservice.beans/META-INF/bindings-jboss-beans.xml"
+    regexp: "{{ item.regex }}"
+    replace: "{{ item.value }}"
+  with_items:
+    - { regex: 'jboss_port', value: "{{ jboss_port }}"}
+  become: yes

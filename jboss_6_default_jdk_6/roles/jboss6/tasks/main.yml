@@ -1,0 +1,49 @@
+---
+- name: group "jboss" exists
+  group:
+    name: jboss
+    state: present
+
+- name: 'Add the user jboss'
+  user:
+    name: jboss
+    group: jboss
+
+- name: 'create a dir dados'
+  file:
+    path: "{{ jboss_dir }}"
+    state: directory
+
+- name: 'baixa o jboss 6'
+  copy:
+    src: "jboss-custom-rj.tar.gz"
+    dest: "/tmp/jboss-custom-rj.tar.gz"
+  become: yes
+
+- name: 'extrai o jboos para dados'
+  unarchive:
+    src: '/tmp/jboss-custom-rj.tar.gz'
+    dest: "{{ jboss_dir }}"
+    remote_src: yes
+  become: yes
+
+- name: 'configura run.conf do jboss'
+  template:
+    src: 'run.conf.j2'
+    dest: "{{ jboss_dir }}/jboss/bin/run.conf"
+    backup: yes
+  become: yes
+
+- name: 'configura o service de init jboss para a instancia'
+  replace:
+    path: "{{ jboss_dir }}/jboss/bin/run.conf"
+    regexp: "{{ item.regex }}"
+    replace: "{{ item.value }}"
+    backup: yes
+  with_items:
+    - { regex: 'jboss_java_home', value: "{{ jboss_java_home }}"}
+    - { regex: 'jboos_Xms', value: "{{ jboos_Xms }}"}
+    - { regex: 'jboss_Xmx', value: "{{ jboss_Xmx }}"}
+    - { regex: 'jboos_MaxPermSize', value: "{{ jboos_MaxPermSize }}"}
+    - { regex: 'jboos_timezone', value: "{{ jboos_timezone }}"}
+  become: yes

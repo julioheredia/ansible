@@ -1,0 +1,12 @@
+---
+db_url: 'jdbc:oracle:thin:@localhost:1521:ORCL'
+db_username: 'user'
+db_password: 'password'
+
+# para configurar na porta 8080 parametro = 0
+jboss_port: '500'
+instancia: server
+jboos_Xms: '-Xms512m'
+jboss_Xmx: '-Xmx1G'
+jboos_MaxPermSize: '-XX:MaxPermSize=256m'
+jboos_timezone: '-Duser.timezone=GMT-3'

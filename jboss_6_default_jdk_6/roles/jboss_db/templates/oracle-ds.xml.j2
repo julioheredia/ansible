@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources spy="true">
+    <local-tx-datasource>
+        <jndi-name>oracle</jndi-name>
+        
+        <driver-class>oracle.jdbc.OracleDriver</driver-class>
+        
+        <connection-url>jdbc:oracle:thin:@param_conexao</connection-url>
+        <user-name>param_user</user-name>
+        <password>param_pass</password>
+        
+        <min-pool-size>5</min-pool-size>
+        <max-pool-size>30</max-pool-size>
+        
+        <idle-timeout-minutes>1</idle-timeout-minutes>
+        <new-connection-sql>select 1 from dual</new-connection-sql>
+        <check-valid-connection-sql>select 1 from dual</check-valid-connection-sql>
+        
+        <application-managed-security/>
+        
+        <metadata>
+          <type-mapping>ORACLE</type-mapping>
+        </metadata>
+    </local-tx-datasource>
+</datasources>
